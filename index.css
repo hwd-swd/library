@@ -50,6 +50,12 @@ table, th, td{
     border-collapse: collapse;
 }
 
+/* overlay css */
+
+#close{
+    float:right;
+}
+
 #overlay{
     position:fixed; 
     display:none;
@@ -61,7 +67,6 @@ table, th, td{
     right:0;
     background-color: rgba(0,0,0,0.5);
     z-index:2;
-    cursor:pointer;
 }
 
 #form{
@@ -69,6 +74,56 @@ table, th, td{
     top:50%;
     left:50%;
     background-color: green;
-    font-size:500%;
+    font-size:150%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    padding:1rem;
+}
 
+.formContainer{
+    background-color:white;
+    padding:2rem;
+}
+
+.formContainer label{
+    margin: 1rem 1rem;
+}
+
+.formContainer input{
+    margin: 5px 10px 5px 0;
+    padding:10px 20px;
+    border: 1px solid #ddd;
+}
+
+#pages{
+    width:20%;
+}
+
+
+.formContainer button{
+    user-select: none;
+    padding: 10px 20px;
+    background-color: red;
+    border: 1px solid #ddd;
+    color:white;
+}
+
+.formContainer button:hover{
+    background-color: orangered;
+}
+
+#clearForm{
+    float:left;
+}
+
+#submit{
+    float:right;
+}
+
+.error{
+    outline: 1px solid red;
+}
+
+.error::-webkit-input-placeholder{
+    color:red;
 }
