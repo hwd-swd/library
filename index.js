@@ -1,6 +1,6 @@
-let myLibrary = [];
+let myLibrary = []; //initialize library
 
-function Book(title,author,pages,read){
+function Book(title,author,pages,read){  //object to store books
     this.title = title
     this.author = author
     this.pages = pages
@@ -15,7 +15,7 @@ function newBook(e){   //unhides the overlay
     overlay.style.display = "block";
 }
 
-function errorOFF(e){
+function errorOFF(e){  //removes the error from the input
     titleInput.placeholder = "Ex. To Kill a Mockingbird";
     titleInput.classList.remove('error');
     authorInput.placeholder = "Ex. Harper Lee";
@@ -25,7 +25,7 @@ function errorOFF(e){
     
 }
 
-function clearForm(e){
+function clearForm(e){  //clears all elements from the form
     errorOFF()
     document.getElementById('title').value='';
     document.getElementById('author').value='';
@@ -39,24 +39,54 @@ function closeOverlay(e){  //closes and refreshes the overlay form
 }
 
 function updateTable(e){  // loops through the array and popluates the table
-    clearTable()
+    //clears the table
+    clearTable();
 
-
+    // populates the table
     for(i=0;i<myLibrary.length;i++){
         let row = table.insertRow();
         row.setAttribute('data-key',i);
+
+        //adds the title, author, and page count
         for (const property in myLibrary[i]){
-            if(myLibrary[i].hasOwnProperty(property)){
+            if(myLibrary[i].hasOwnProperty(property)&&property!='read'){
                 let cell = row.insertCell()
                 cell.innerHTML = `${myLibrary[i][property]}`;
             }
         }
+
+        //adds a toggle for read
+        let cell1 = row.insertCell();
+        cell1.setAttribute('data-key',i)
+        if (myLibrary[i]['read']==true){
+            hasRead = "readON";
+            readStatus = 'Read';
+        }
+        else{
+            hasRead = "readOFF";
+            readStatus = 'Not read';
+        }
+        cell1.innerHTML = `<button class="${hasRead}" data-key=${i}>${readStatus}</button>`;
+        cell1.addEventListener('click',toggleRead)
+
         // adds a delete button
         let cell = row.insertCell();
         cell.setAttribute('data-key',i)
         cell.innerHTML = `<button class="delete" data-key=${i}>Delete</button>`;
         cell.addEventListener('click',deleteEntry)
     }
+}
+
+function toggleRead(e){
+    let index = e.target.getAttribute('data-key');
+    if (myLibrary[index]['read']==true){
+        myLibrary[index]['read']=false;
+    }
+    else{
+        myLibrary[index]['read']=true;
+    }
+    
+    updateTable()
 }
 
 function clearTable(e){  //function that clears the table
@@ -67,7 +97,7 @@ function clearTable(e){  //function that clears the table
     }
 }
 
-function results(e){
+function results(e){ //function that inputs the form results into the table
     let formTitle = document.getElementById('title').value;
     let formAuthor = document.getElementById('author').value;
     let formPages = document.getElementById('pages').value;
@@ -79,11 +109,26 @@ function results(e){
         let row = table.insertRow();
         row.setAttribute('data-key',myLibrary.length-1);
         for (const property in myLibrary[myLibrary.length-1]){
-            if(myLibrary[myLibrary.length-1].hasOwnProperty(property)){
+            if(myLibrary[myLibrary.length-1].hasOwnProperty(property) && property!='read'){
                 let cell = row.insertCell();
                 cell.innerHTML = `${myLibrary[myLibrary.length-1][property]}`;
             }
         }
+
+        //adds a toggle for read
+        let cell1 = row.insertCell();
+        cell1.setAttribute('data-key',i)
+        if (myLibrary[i]['read']==true){
+            hasRead = "readON";
+            readStatus = 'Read';
+        }
+        else{
+            hasRead = "readOFF";
+            readStatus = 'Not read';
+        }
+        cell1.innerHTML = `<button class="${hasRead}" data-key=${i}>${readStatus}</button>`;
+        cell1.addEventListener('click',toggleRead)
+
 
         // adds a delete button
         let cell = row.insertCell();
@@ -117,7 +162,6 @@ function results(e){
 function deleteEntry(e){
     let index = e.target.getAttribute('data-key');
     myLibrary.splice(index,1)
-    
     updateTable()
 }
 
@@ -137,6 +181,7 @@ close.addEventListener('click',closeOverlay);
 const submit = document.querySelector('#submit');
 submit.addEventListener('click',results)
 
+//form container
 const form = document.querySelector(".formContainer");
 
 const clearFormButton = document.querySelector('#clearForm');
@@ -150,9 +195,9 @@ authorInput.addEventListener('click',function(){authorInput.classList.remove('er
 pagesInput.addEventListener('click',function(){pagesInput.classList.remove('error')
 pagesInput.placeholder = "Ex. 28";})
 
-
+//test books
 addBookToLibrary('title','author',1,false)
 addBookToLibrary('title','author',2,false)
-addBookToLibrary('title','author',3,false)
+addBookToLibrary('title','author',3,true)
 addBookToLibrary('title','author',4,false)
 updateTable()

@@ -1,3 +1,4 @@
+/* reset margins and borders for the page */
 * { 
     margin:0;
     border:0;
@@ -6,11 +7,11 @@
     padding:0;
     font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
 html, body{
     height:100%;
 }
 
+/* main container is a flex  */
 .mainContainer{
     display:flex;
     flex-direction: column;
@@ -19,6 +20,7 @@ html, body{
     align-items: center;
 }
 
+/* header has a title and a stats page */
 .header{
     display:flex;
     width:100%;
@@ -36,26 +38,40 @@ html, body{
 
 }
 
+
+/* add book button */
 .add{
     background-color: orange;
 }
 
+
+/* table to display all the books */
 .table{
     width:80%;
 }
-
 table, th, td{
     border: solid 1px black;
     padding:2px;
     border-collapse: collapse;
+} 
+
+.readON{
+    background-color: green;
+}
+
+.readOFF{
+    background-color: red;
+}
+
+/* delete button css */
+.delete{
+    background-color: red;
 }
 
 /* overlay css */
-
 #close{
     float:right;
 }
-
 #overlay{
     position:fixed; 
     display:none;
@@ -69,6 +85,8 @@ table, th, td{
     z-index:2;
 }
 
+
+/* css for the form */
 #form{
     position:absolute;
     top:50%;
@@ -79,27 +97,23 @@ table, th, td{
     -ms-transform: translate(-50%,-50%);
     padding:1rem;
 }
-
 .formContainer{
     background-color:white;
     padding:2rem;
 }
-
 .formContainer label{
     margin: 1rem 1rem;
 }
-
 .formContainer input{
     margin: 5px 10px 5px 0;
     padding:10px 20px;
     border: 1px solid #ddd;
 }
-
 #pages{
     width:20%;
 }
 
-
+/* input and clear button */
 .formContainer button{
     user-select: none;
     padding: 10px 20px;
@@ -107,23 +121,20 @@ table, th, td{
     border: 1px solid #ddd;
     color:white;
 }
-
 .formContainer button:hover{
     background-color: orangered;
 }
-
 #clearForm{
     float:left;
 }
-
 #submit{
     float:right;
 }
 
+/* error css for the form */
 .error{
     outline: 1px solid red;
 }
-
 .error::-webkit-input-placeholder{
     color:red;
 }
