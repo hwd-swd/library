@@ -57,6 +57,7 @@ function updateTable(e){  // loops through the array and popluates the table
 
         //adds a toggle for read
         let cell1 = row.insertCell();
+        cell1.style.textAlign="center";
         cell1.setAttribute('data-key',i)
         if (myLibrary[i]['read']==true){
             hasRead = "readON";
@@ -71,6 +72,7 @@ function updateTable(e){  // loops through the array and popluates the table
 
         // adds a delete button
         let cell = row.insertCell();
+        cell.style.textAlign="center";
         cell.setAttribute('data-key',i)
         cell.innerHTML = `<button class="delete" data-key=${i}>Delete</button>`;
         cell.addEventListener('click',deleteEntry)
@@ -117,6 +119,7 @@ function results(e){ //function that inputs the form results into the table
 
         //adds a toggle for read
         let cell1 = row.insertCell();
+        cell1.style.textAlign="center";
         cell1.setAttribute('data-key',i)
         if (myLibrary[i]['read']==true){
             hasRead = "readON";
@@ -132,6 +135,7 @@ function results(e){ //function that inputs the form results into the table
 
         // adds a delete button
         let cell = row.insertCell();
+        cell.style.textAlign="center";
         cell.setAttribute('data-key',myLibrary.length-1)
         cell.innerHTML = `<button class="delete" data-key=${myLibrary.length-1}>Delete</button>`;
         cell.addEventListener('click',deleteEntry)
@@ -196,8 +200,8 @@ pagesInput.addEventListener('click',function(){pagesInput.classList.remove('erro
 pagesInput.placeholder = "Ex. 28";})
 
 //test books
-addBookToLibrary('title','author',1,false)
-addBookToLibrary('title','author',2,false)
-addBookToLibrary('title','author',3,true)
-addBookToLibrary('title','author',4,false)
+addBookToLibrary('Greenlights','Matthew McConaughey',304,false)
+addBookToLibrary('Beowulf','Cotton Vitellius A. xv',3182,true)
+addBookToLibrary('Odyssey','Homer',384,true)
+addBookToLibrary('To Kill a Mockingbird','Harper Lee',281,true)
 updateTable()
