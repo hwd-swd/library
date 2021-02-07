@@ -1,10 +1,19 @@
 let myLibrary = []; //initialize library
 
-function Book(title,author,pages,read){  //object to store books
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+// function Book(title,author,pages,read){  //object to store books
+//     this.title = title
+//     this.author = author
+//     this.pages = pages
+//     this.read = read
+// }
+
+class Book {
+    constructor(title='idk',author='idk',pages=0,read=false){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
 function addBookToLibrary(title,author,pages,read){   //pushes a new book to the library
@@ -200,8 +209,8 @@ pagesInput.addEventListener('click',function(){pagesInput.classList.remove('erro
 pagesInput.placeholder = "Ex. 28";})
 
 //test books
-addBookToLibrary('Greenlights','Matthew McConaughey',304,false)
-addBookToLibrary('Beowulf','Cotton Vitellius A. xv',3182,true)
-addBookToLibrary('Odyssey','Homer',384,true)
-addBookToLibrary('To Kill a Mockingbird','Harper Lee',281,true)
-updateTable()
+addBookToLibrary('Greenlights','Matthew McConaughey',304,false);
+addBookToLibrary('Beowulf','Cotton Vitellius A. xv',3182,true);
+addBookToLibrary('Odyssey','Homer',384,true);
+addBookToLibrary('To Kill a Mockingbird','Harper Lee',281,true);
+updateTable();
